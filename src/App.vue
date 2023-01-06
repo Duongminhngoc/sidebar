@@ -12,12 +12,12 @@
         <li>
           <img class="zap-emoji" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/19332/zap-emoji.svg" alt="Zap Emoji"/>
         </li>
-        <li class="nav-first"><a href="#">Home</a></li>
-        <li class="nav-first"><a href="#">Work</a></li>
-        <li class="nav-first"><a href="#">Contact</a></li>
-        <li class="nav-last"><a href="#">Tip</a></li>
-        <li class="nav-last"><a href="#">Resource</a></li>
-        <li class="nav-last"><a href="#">Shenanigans</a></li>
+        <li class="nav-first" v-for="item in bigMenu" :key="item.id">
+          <a href="#">{{ item.name }}</a>
+        </li>
+        <li class="nav-last" v-for="item in smallMenu" :key="item.id">
+          <a href="#">{{ item.name }}</a>
+        </li>
         <li class="close" @click="closeHandle">{{text}}</li>
       </ul>
       
@@ -32,6 +32,16 @@ export default {
     return {
       isClose: false,
       text: "Close",
+      bigMenu: [
+        { id: 1, name: "Home"},
+        { id: 2, name: "Work"},
+        { id: 3, name: "Contact"},
+      ],
+      smallMenu: [
+        { id: 1, name: "Tip"},
+        { id: 2, name: "Resource"},
+        { id: 3, name: "Shenanigans"},
+      ],
     };
   },
   methods: {
@@ -53,10 +63,10 @@ export default {
   padding: 0;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Helvetica Neue, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #ffffff;
+  color: #fff;
   background-color: #2c3e50;
 }
 .app {
@@ -67,7 +77,8 @@ export default {
 .zap-sliderout {
   position: absolute;
   top: 50%;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
 }
 .zap-sliderout p {
